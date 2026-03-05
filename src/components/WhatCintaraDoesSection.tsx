@@ -1,12 +1,54 @@
+"use client";
+
 import React from "react";
+import { motion } from "framer-motion";
 
 export default function WhatCintaraDoesSection() {
+    // Animation variants for the staggered 3D reveal
+    const containerVariants = {
+        hidden: { opacity: 0 },
+        visible: {
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.2, // Delay between each card rendering
+                delayChildren: 0.1,
+            }
+        }
+    };
+
+    const cardVariants = {
+        hidden: {
+            opacity: 0,
+            y: 60,
+            rotateX: 20,
+            scale: 0.95
+        },
+        visible: {
+            opacity: 1,
+            y: 0,
+            rotateX: 0,
+            scale: 1,
+            transition: {
+                type: "spring" as const,
+                damping: 20,
+                stiffness: 100,
+                duration: 0.8
+            }
+        }
+    };
+
     return (
-        <section className="cintara-does-section" id="how-it-works">
+        <section className="cintara-does-section overflow-hidden" id="how-it-works">
             <div className="cintara-does-container">
 
                 {/* ── Top Header Row ── */}
-                <div className="cintara-does-header">
+                <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    transition={{ duration: 0.6, ease: "easeOut" }}
+                    className="cintara-does-header"
+                >
                     <div className="cd-title-area">
                         <div className="cd-badge">Control Plane, Not Another Agent</div>
                         <h2 className="cd-title">What Cintara Does</h2>
@@ -35,13 +77,19 @@ export default function WhatCintaraDoesSection() {
                             Core Systems
                         </div>
                     </div>
-                </div>
+                </motion.div>
 
                 {/* ── Three Cards Row ── */}
-                <div className="cd-cards-grid">
+                <motion.div
+                    className="cd-cards-grid perspective-[1200px]"
+                    variants={containerVariants}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, margin: "-100px" }}
+                >
 
                     {/* Card 1 */}
-                    <div className="cd-card-wrapper">
+                    <motion.div variants={cardVariants} whileHover={{ y: -10, scale: 1.02 }} className="cd-card-wrapper transition-all duration-300">
                         <div className="cd-card-bg"></div>
                         <div className="cd-card">
                             <div className="cd-card-graphic">
@@ -83,10 +131,10 @@ export default function WhatCintaraDoesSection() {
                                 <p className="cd-card-desc">Cintara sits between AI systems and production. It governs execution before impact.</p>
                             </div>
                         </div>
-                    </div>
+                    </motion.div>
 
                     {/* Card 2 */}
-                    <div className="cd-card-wrapper">
+                    <motion.div variants={cardVariants} whileHover={{ y: -10, scale: 1.02 }} className="cd-card-wrapper transition-all duration-300">
                         <div className="cd-card-bg"></div>
                         <div className="cd-card">
                             <div className="cd-card-graphic">
@@ -138,10 +186,10 @@ export default function WhatCintaraDoesSection() {
                                 <p className="cd-card-desc">No action executes without policy validation. High-risk requests are escalated before impact.</p>
                             </div>
                         </div>
-                    </div>
+                    </motion.div>
 
                     {/* Card 3 */}
-                    <div className="cd-card-wrapper">
+                    <motion.div variants={cardVariants} whileHover={{ y: -10, scale: 1.02 }} className="cd-card-wrapper transition-all duration-300">
                         <div className="cd-card-bg"></div>
                         <div className="cd-card">
                             <div className="cd-card-graphic">
@@ -194,16 +242,22 @@ export default function WhatCintaraDoesSection() {
                                 <p className="cd-card-desc">Critical actions require approval. Routine actions run under enforced guardrails.</p>
                             </div>
                         </div>
-                    </div>
+                    </motion.div>
 
-                </div>
+                </motion.div>
 
                 {/* ── Footer ── */}
-                <div className="cd-footer-wrapper">
+                <motion.div
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true, margin: "-50px" }}
+                    transition={{ delay: 0.6, duration: 0.6 }}
+                    className="cd-footer-wrapper"
+                >
                     <div className="cd-footer-pill">
                         <em>Controlled execution. Never blind automation.</em>
                     </div>
-                </div>
+                </motion.div>
 
             </div>
         </section>

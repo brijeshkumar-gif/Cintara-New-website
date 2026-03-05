@@ -507,6 +507,13 @@ body {
   height: 190px;
   flex-shrink: 0;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+  transition: all 0.3s ease;
+  cursor: default;
+}
+
+.diagram-endpoint:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
 }
 
 .diagram-icon-box {
@@ -543,12 +550,18 @@ body {
 }
 
 /* Arrow connectors */
+@keyframes floatArrow {
+  0% { transform: translateX(0); opacity: 0.8; }
+  50% { transform: translateX(6px); opacity: 1; }
+  100% { transform: translateX(0); opacity: 0.8; }
+}
+
 .diagram-arrow {
   flex-shrink: 0;
   opacity: 1;
+  animation: floatArrow 3s infinite ease-in-out;
 }
 
-/* Central control plane box */
 .diagram-center {
   flex: 1;
   min-width: 0;
@@ -557,10 +570,15 @@ body {
   align-items: center;
   gap: 32px;
   background: rgba(255, 255, 255, 0.65);
-  /* slightly opaque minty white */
   border-radius: 20px;
   padding: 30px 40px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.02), inset 0 0 0 1px rgba(255, 255, 255, 0.6);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.diagram-center:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.05), inset 0 0 0 1.5px rgba(255, 255, 255, 0.8);
 }
 
 .diagram-title {
@@ -592,6 +610,14 @@ body {
   color: #1a1a1a;
   white-space: nowrap;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+  transition: all 0.2s ease;
+  cursor: default;
+}
+
+.diagram-badge:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  border-color: rgba(14, 165, 233, 0.2);
 }
 
 .diagram-badge-icon {

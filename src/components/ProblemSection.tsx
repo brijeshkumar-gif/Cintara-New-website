@@ -1,4 +1,73 @@
-import React from "react";
+"use client";
+
+import React, { useRef } from "react";
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+
+// Helper component for the 3D Tilt Card effect
+const TiltCard = ({ children }: { children: React.ReactNode }) => {
+    const ref = useRef<HTMLDivElement>(null);
+
+    // Mouse positions
+    const x = useMotionValue(0);
+    const y = useMotionValue(0);
+
+    // Smooth springs for the rotation
+    const rotateX = useSpring(useTransform(y, [-0.5, 0.5], ["15deg", "-15deg"]), { damping: 20, stiffness: 150 });
+    const rotateY = useSpring(useTransform(x, [-0.5, 0.5], ["-15deg", "15deg"]), { damping: 20, stiffness: 150 });
+
+    const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+        if (!ref.current) return;
+
+        const rect = ref.current.getBoundingClientRect();
+
+        // Calculate mouse position relative to the center of the card
+        // Values range from -0.5 to 0.5
+        const mouseX = e.clientX - rect.left;
+        const mouseY = e.clientY - rect.top;
+
+        const xPct = mouseX / rect.width - 0.5;
+        const yPct = mouseY / rect.height - 0.5;
+
+        x.set(xPct);
+        y.set(yPct);
+    };
+
+    const handleMouseLeave = () => {
+        // Reset to flat
+        x.set(0);
+        y.set(0);
+    };
+
+    return (
+        <motion.div
+            ref={ref}
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
+            style={{
+                rotateX,
+                rotateY,
+                transformStyle: "preserve-3d",
+            }}
+            className="problem-card relative overflow-hidden"
+            // Ensure the transform pivot is the center of the card
+            initial={{ perspective: 1000 }}
+            whileHover={{ scale: 1.02 }}
+        >
+            {/* 3D Depth Content wrapper */}
+            <div style={{ transform: "translateZ(40px)" }} className="h-full flex flex-col pointer-events-none">
+                {children}
+            </div>
+            {/* Glossy glare effect on hover */}
+            <motion.div
+                className="absolute inset-0 z-10 pointer-events-none rounded-2xl bg-gradient-to-tr from-white/5 to-white/20 opacity-0"
+                whileHover={{ opacity: 1 }}
+                style={{
+                    transform: "translateZ(1px)",
+                }}
+            />
+        </motion.div>
+    );
+};
 
 export default function ProblemSection() {
     return (
@@ -71,15 +140,15 @@ export default function ProblemSection() {
                 </div>
 
                 {/* ── Right Column ── */}
-                <div className="problem-right">
+                <div className="problem-right perspective-[1000px]">
                     <h3 className="problem-right-title">
                         Three Questions Every<br />
                         Autonomous System<br />
                         Must Answer
                     </h3>
 
-                    <div className="problem-cards-wrapper">
-                        <div className="problem-card">
+                    <div className="problem-cards-wrapper pb-6">
+                        <TiltCard>
                             <div className="problem-card-icon">
                                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                                     <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
@@ -91,9 +160,9 @@ export default function ProblemSection() {
                                 <h4>Boundary Control</h4>
                                 <p>Can this agent act only within clearly defined boundaries?</p>
                             </div>
-                        </div>
+                        </TiltCard>
 
-                        <div className="problem-card">
+                        <TiltCard>
                             <div className="problem-card-icon">
                                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                                     <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
@@ -105,9 +174,9 @@ export default function ProblemSection() {
                                 <h4>Pre-Execution Safeguards</h4>
                                 <p>Can sensitive actions be validated or stopped before they execute?</p>
                             </div>
-                        </div>
+                        </TiltCard>
 
-                        <div className="problem-card">
+                        <TiltCard>
                             <div className="problem-card-icon">
                                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                                     <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
@@ -119,7 +188,7 @@ export default function ProblemSection() {
                                 <h4>Provable Audit Trail</h4>
                                 <p>Can every decision be explained, audited, and proven later?</p>
                             </div>
-                        </div>
+                        </TiltCard>
                     </div>
 
                     <div className="problem-right-footer">
@@ -132,3 +201,4 @@ export default function ProblemSection() {
         </section>
     );
 }
+

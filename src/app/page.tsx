@@ -3,6 +3,9 @@ import ProblemSection from "@/components/ProblemSection";
 import WhatCintaraDoesSection from "@/components/WhatCintaraDoesSection";
 import GovernanceSection from "@/components/GovernanceSection";
 import ExecutionSection from "@/components/ExecutionSection";
+import TestimonialSection from "@/components/TestimonialSection";
+import CallToActionSection from "@/components/CallToActionSection";
+import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
@@ -12,6 +15,9 @@ export default function Home() {
       <WhatCintaraDoesSection />
       <GovernanceSection />
       <ExecutionSection />
+      <TestimonialSection />
+      <CallToActionSection />
+      <Footer />
     </div>
   );
 }
