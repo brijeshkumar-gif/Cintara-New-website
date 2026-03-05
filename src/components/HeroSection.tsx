@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function HeroSection() {
     return (
-        <section className="hero-outer">
+        <section className="hero-outer" id="platform">
             {/* Main gradient container */}
             <div className="hero-container">
                 {/* ── Upper content area ── */}
@@ -53,8 +53,8 @@ export default function HeroSection() {
 
                     {/* CTA Buttons */}
                     <div className="hero-ctas">
-                        <Link href="#contact" className="btn-primary">Contact Us</Link>
-                        <Link href="#how-it-works" className="btn-secondary">See How It Works</Link>
+                        <Link href="/contact" className="btn-primary">Contact Us</Link>
+                        <Link href="/how-it-works" className="btn-secondary">See How It Works</Link>
                     </div>
                 </div>
 

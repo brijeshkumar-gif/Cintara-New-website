@@ -71,7 +71,7 @@ const TiltCard = ({ children }: { children: React.ReactNode }) => {
 
 export default function ProblemSection() {
     return (
-        <section className="problem-section" id="problem">
+        <section className="problem-section" id="use-cases">
             {/* The outer container holds both left and right columns horizontally */}
             <div className="problem-content-container">
 

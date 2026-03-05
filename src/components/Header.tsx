@@ -5,10 +5,10 @@ import Link from "next/link";
 import { useState } from "react";
 
 const navItems = [
-  { label: "Platform", href: "#platform", active: true },
-  { label: "Use Cases", href: "#use-cases", active: false },
-  { label: "How It Works", href: "#how-it-works", active: false },
-  { label: "About", href: "#about", active: false },
+  { label: "Platform", href: "/#platform", active: true },
+  { label: "Use Cases", href: "/use-cases", active: false },
+  { label: "How It Works", href: "/how-it-works", active: false },
+  { label: "About", href: "/about", active: false },
 ];
 
 export default function Header() {
@@ -47,7 +47,7 @@ export default function Header() {
 
         {/* CTA Button */}
         <div className="header-cta">
-          <Link href="#contact" className="btn-contact">
+          <Link href="/contact" className="btn-contact">
             Contact Us
           </Link>
         </div>
@@ -83,7 +83,7 @@ export default function Header() {
             </Link>
           ))}
           <Link
-            href="#contact"
+            href="/#contact"
             className="btn-contact mobile-cta"
             onClick={() => setMobileMenuOpen(false)}
           >

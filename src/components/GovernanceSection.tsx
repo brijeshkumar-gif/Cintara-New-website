@@ -2,7 +2,7 @@ import React from "react";
 
 export default function GovernanceSection() {
     return (
-        <section className="gov-section">
+        <section className="gov-section" id="about">
             <div className="gov-container">
                 {/* Header Side */}
                 <div className="gov-header">

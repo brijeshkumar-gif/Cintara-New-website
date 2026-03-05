@@ -426,6 +426,8 @@ body {
   flex-wrap: wrap;
   justify-content: center;
   margin-top: 10px;
+  position: relative;
+  z-index: 50;
 }
 
 .btn-primary {
@@ -551,9 +553,20 @@ body {
 
 /* Arrow connectors */
 @keyframes floatArrow {
-  0% { transform: translateX(0); opacity: 0.8; }
-  50% { transform: translateX(6px); opacity: 1; }
-  100% { transform: translateX(0); opacity: 0.8; }
+  0% {
+    transform: translateX(0);
+    opacity: 0.8;
+  }
+
+  50% {
+    transform: translateX(6px);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateX(0);
+    opacity: 0.8;
+  }
 }
 
 .diagram-arrow {
@@ -1689,5 +1702,371 @@ body {
   .et-step-right {
     width: 100%;
     margin-top: 0;
+  }
+}
+
+/* ─────────────────────────────────────────────
+   USE CASES HERO
+   Figma-inspired styles for the Use Cases Banner
+───────────────────────────────────────────── */
+
+.use-cases-hero {
+  width: 100%;
+  min-height: calc(100vh - var(--header-height));
+  padding: 100px 40px;
+  background: linear-gradient(180deg, #F0F9FF 0%, #A5F3FC 60%, #06B6D4 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.uch-container {
+  max-width: 1280px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.uch-content {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.uch-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: white;
+  padding: 6px 16px;
+  border-radius: 99px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #1a1a1a;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  width: fit-content;
+}
+
+.uch-badge-dot {
+  width: 6px;
+  height: 6px;
+  background: #0ea5e9;
+  border-radius: 50%;
+}
+
+.uch-headline {
+  font-size: 56px;
+  font-weight: 700;
+  line-height: 1.1;
+  color: #111111;
+  letter-spacing: -0.02em;
+}
+
+.uch-subtitle {
+  font-size: 18px;
+  color: #475569;
+  max-width: 500px;
+  line-height: 1.6;
+}
+
+.uch-features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.uch-feature-pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: white;
+  padding: 8px 16px;
+  border-radius: 99px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #334155;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.02);
+}
+
+.uch-feature-icon {
+  color: #64748b;
+  font-size: 14px;
+}
+
+/* Card Styles */
+.uch-card {
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 30px 60px rgba(14, 165, 233, 0.1), 0 10px 20px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(14, 165, 233, 0.1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.uch-card-header {
+  padding: 16px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(14, 165, 233, 0.02);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: #64748b;
+}
+
+.uch-card-dots {
+  display: flex;
+  gap: 6px;
+}
+
+.uch-card-dots .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+.uch-card-dots .yellow {
+  background: #fbbf24;
+}
+
+.uch-card-dots .green {
+  background: #22c55e;
+}
+
+.uch-card-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 30px;
+  gap: 20px;
+}
+
+.uch-col {
+  padding: 24px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.uch-col-unbounded {
+  background: #fff1f2;
+}
+
+.uch-col-cintara {
+  background: #f0f9ff;
+  border: 1px solid rgba(14, 165, 233, 0.1);
+}
+
+.uch-col-title {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+
+.uch-col-unbounded .uch-col-title {
+  color: #f43f5e;
+}
+
+.uch-col-cintara .uch-col-title {
+  color: #0ea5e9;
+}
+
+.uch-col-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.uch-col-list li {
+  font-size: 13px;
+  color: #64748b;
+  position: relative;
+  line-height: 1.4;
+}
+
+.uch-card-footer {
+  padding: 20px 30px;
+  background: #111827;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+.uch-card-footer p {
+  font-size: 12px;
+  color: white;
+  font-weight: 400;
+}
+
+.uch-status-badge {
+  background: #22c55e;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 99px;
+  font-size: 10px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .uch-container {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 40px;
+  }
+
+  .uch-content {
+    align-items: center;
+  }
+
+  .uch-headline {
+    font-size: 42px;
+  }
+
+  .uch-features {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 640px) {
+  .uch-card-body {
+    grid-template-columns: 1fr;
+  }
+
+  .uch-card-footer {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+/* ─────────────────────────────────────────────
+   3D Minimalist Effects – Floating & Perspective
+───────────────────────────────────────────── */
+
+/* Subtle floating animation for hero cards */
+@keyframes float3d {
+
+  0%,
+  100% {
+    transform: translateY(0px) rotateX(0deg) rotateY(0deg);
+  }
+
+  25% {
+    transform: translateY(-8px) rotateX(1deg) rotateY(-0.5deg);
+  }
+
+  50% {
+    transform: translateY(-4px) rotateX(-0.5deg) rotateY(1deg);
+  }
+
+  75% {
+    transform: translateY(-10px) rotateX(0.5deg) rotateY(-1deg);
+  }
+}
+
+/* Slow gentle float for decorative elements */
+@keyframes gentleFloat {
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+/* Shimmer highlight sweep for cards */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Apply float to diagram card in hero */
+.diagram-card {
+  animation: gentleFloat 6s ease-in-out infinite;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+/* Subtle 3D lift on hover for scenario cards */
+.scenario-card {
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.4s ease;
+  transform-style: preserve-3d;
+}
+
+.scenario-card:hover {
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15),
+    0 0 30px rgba(14, 165, 233, 0.08);
+}
+
+/* Perspective wrapper for problem section right column */
+.problem-right {
+  perspective: 1200px;
+}
+
+/* Subtle entrance for sections – 3D depth slide */
+@keyframes slideInDepth {
+  from {
+    opacity: 0;
+    transform: translateZ(-50px) translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateZ(0) translateY(0);
+  }
+}
+
+/* Glass morphism shimmer for contact info panel */
+.contact-info-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-info-shimmer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(90deg,
+      transparent,
+      rgba(255, 255, 255, 0.06),
+      transparent);
+  animation: shimmer 8s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* Disable 3D and floating effects on mobile for performance */
+@media (max-width: 768px) {
+  .diagram-card {
+    animation: none;
+  }
+
+  .scenario-card {
+    transform: none !important;
   }
 }
